@@ -4,6 +4,9 @@ import org.junit.Test;
 
 public class MainTest {
 
+
+    //write----------------------------------------
+
     //текст + 1 значение из констркутора
     @Test
     public void testWrite() {
@@ -37,12 +40,30 @@ public class MainTest {
         String word = testText.write(testWord);
         Assert.assertEquals(testWord, word);
     }
-    //текст из букв, символов, пробелов + 3 значения из констркутора
+
+    //пустой текст (null) + 3 значения из конструктора
+    @Test
+    public void testNullAndThreeArgsWrite() {
+        String testWord = "";
+        int inkContainerValue = 15;
+        double sizeLetter = 4.0;
+        String color = "GREEN";
+        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
+        String word = testText.write(testWord);
+        Assert.assertEquals(testWord, word);
+    }
 
 
 
 
 
+
+    //текст с пробелами + 3 значения из констркутора
+
+
+
+
+// isWork------------------------------
 
     @Test
     public void testIsWorkOverZero() {
