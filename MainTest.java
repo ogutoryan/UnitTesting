@@ -53,12 +53,41 @@ public class MainTest {
         Assert.assertEquals(testWord, word);
     }
 
+    //текст  + 3 значения из конструктора, inkCOntainerValue = 0
+
+
+    @Test
+    public void testAndThreeArgsInkZeroWrite() {
+        String testWord = "Life is beautiful";
+        int inkContainerValue = 0;
+        double sizeLetter = 15.10;
+        String color = "RED";
+        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
+        String word = testText.write(testWord);
+        Assert.assertNotEquals(testWord, word);
+    }
+
+    //partOfWord
+
+    @Test
+    public void testPartOfWordWrite() {
+        String testWord = "Testing";
+        int inkContainerValue = 2;
+        double sizeLetter = 15.10;
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
+        String word = testText.write(testWord);
+        String partOfWord = word.substring(0, inkContainerValue);
+        Assert.assertNotEquals(testWord, partOfWord);
+    }
 
 
 
 
 
     //текст с пробелами + 3 значения из констркутора
+
+
 
 
 
