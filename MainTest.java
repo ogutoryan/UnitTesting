@@ -16,7 +16,7 @@ public class MainTest {
 
     //текст из букв и символов  + 2 значения из констркутора
     @Test
-    public void testWithSimbolsWrite() {
+    public void testWithSimbolsAndTwoArgsWrite() {
         String testWord = "<test>*(&^%%&^^(&klh^&*Anytext</test>";
         int inkContainerValue = 1025;
         double sizeLetter = 10.1;
@@ -25,6 +25,18 @@ public class MainTest {
         Assert.assertEquals(testWord, word);
     }
 
+    //текст из букв и символов + 3 значения из констркутора
+
+    @Test
+    public void testWithSimbolsAndThreeArgsWrite() {
+        String testWord = "<test>*(&^%875%&^^(&k878lh^&*Anytex87454t</test>1";
+        int inkContainerValue = 999;
+        double sizeLetter = 9.8;
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
+        String word = testText.write(testWord);
+        Assert.assertEquals(testWord, word);
+    }
     //текст из букв, символов, пробелов + 3 значения из констркутора
 
 
