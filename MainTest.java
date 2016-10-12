@@ -7,7 +7,7 @@ public class MainTest {
     //текст + 1 значение из констркутора
     @Test
     public void testWrite() {
-        String testWord = "Test Any text";
+        String testWord = "TestAnytext";
         int inkContainerValue = 100;
         Pen testText = new Pen(inkContainerValue);
         String word = testText.write(testWord);
@@ -15,6 +15,21 @@ public class MainTest {
     }
 
     //текст из букв и символов  + 2 значения из констркутора
+    @Test
+    public void testWithSimbolsWrite() {
+        String testWord = "<test>*(&^%%&^^(&klh^&*Anytext</test>";
+        int inkContainerValue = 1025;
+        double sizeLetter = 10.1;
+        Pen testText = new Pen(inkContainerValue, sizeLetter);
+        String word = testText.write(testWord);
+        Assert.assertEquals(testWord, word);
+    }
+
+    //текст из букв, символов, пробелов + 3 значения из констркутора
+
+
+
+
 
 
     @Test
