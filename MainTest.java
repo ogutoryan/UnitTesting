@@ -4,8 +4,23 @@ import org.junit.Test;
 
 public class MainTest {
 
+    //только inkContainerValue из конструктора
+    @Test
+    public void JustInkContainerValue() {
+        int inkContainerValue = 10;
+        Pen testInk = new Pen(inkContainerValue);
+        Assert.assertNotNull(testInk);
 
-    //write----------------------------------------
+
+
+    }
+
+
+    //write----------
+
+
+
+//------------------------------
 
     //текст + 1 значение из констркутора
     @Test
