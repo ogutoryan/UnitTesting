@@ -41,18 +41,6 @@ public class MainTest {
         Assert.assertEquals(testWord, word);
     }
 
-    //пустой текст (null) + 3 значения из конструктора
-    @Test
-    public void testNullAndThreeArgsWrite() {
-        String testWord = "";
-        int inkContainerValue = 15;
-        double sizeLetter = 4.0;
-        String color = "GREEN";
-        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
-        String word = testText.write(testWord);
-        Assert.assertEquals(testWord, word);
-    }
-
     //текст  + 3 значения из конструктора, inkCOntainerValue = 0
 
 
@@ -64,35 +52,78 @@ public class MainTest {
         String color = "RED";
         Pen testText = new Pen(inkContainerValue, sizeLetter, color);
         String word = testText.write(testWord);
-        Assert.assertNotEquals(testWord, word);
+        Assert.assertEquals("", word);
     }
 
-    //partOfWord
+    //With Space
 
     @Test
-    public void testPartOfWordWrite() {
-        String testWord = "Testing";
-        int inkContainerValue = 2;
+    public void testSpaceWrite() {
+        String testWord = "Testing hello";
+        int inkContainerValue = 10;
         double sizeLetter = 15.10;
         String color = "BLUE";
         Pen testText = new Pen(inkContainerValue, sizeLetter, color);
         String word = testText.write(testWord);
         String partOfWord = word.substring(0, inkContainerValue);
-        Assert.assertNotEquals(testWord, partOfWord);
+        Assert.assertEquals("Testing hel", partOfWord);
     }
 
+    //partOfWord
+    @Test
+    public void testPartOfWordWrite() {
+        String testWord = "Testing";
+        int inkContainerValue = 2;
+        double sizeLetter = 1.0;
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
+        String word = testText.write(testWord);
+        String partOfWord = word.substring(0, inkContainerValue);
+        Assert.assertEquals("Te", partOfWord);
+    }
 
+    //sizeLetter > inkContainerValue
+    @Test
+    public void testSizeLetterMoreThanInkContainerValue() {
+        String testWord = "Testing";
+        int inkContainerValue = 2;
+        double sizeLetter = 5.0;
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
+        String word = testText.write(testWord);
+        String partOfWord = word.substring(0, inkContainerValue);
+        Assert.assertEquals("", partOfWord);
+    }
 
+    //sizeWord > inkContainerValue
+    @Test
+    public void testSizeWordMoreThanInkContainerValue() {
+        String testWord = "Testing";
+        int inkContainerValue = 10;
+        double sizeLetter = 5.0;
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, sizeLetter, color);
+        String word = testText.write(testWord);
+        String partOfWord = word.substring(0, inkContainerValue);
+        Assert.assertEquals("Te", partOfWord);
+    }
 
+    //inkContainerValue != 0
+     @Test
+     public void testPartOfInkContainerValueWrite() {
+         String testWord1 = "Testing";
+         String testWord2 = "Authotesting";
+         int inkContainerValue = 10;
+         double sizeLetter = 1.0;
+         String color = "BLUE";
+         Pen testText = new Pen(inkContainerValue, sizeLetter);
+         String word = testText.write(testWord1);
+         String word2 = testText.write(testWord2);
+         Assert.assertEquals("Testing", testWord1);
+         Assert.assertEquals("Aut", testWord2);
+     }
 
-    //текст с пробелами + 3 значения из констркутора
-
-
-
-
-
-
-// isWork------------------------------
+    // isWork------------------------------
 
     @Test
     public void testIsWorkOverZero() {
@@ -112,10 +143,9 @@ public class MainTest {
     @Test
     public void testIsWorkUnderZero() {
         int inkContainerValue = -100;
-        Pen UnderZero = new Pen(inkContainerValue);
-        Assert.assertEquals(false, UnderZero.isWork());
+        Pen underZero = new Pen(inkContainerValue);
+        Assert.assertEquals(false, underZero.isWork());
     }
 
 
 }
-
