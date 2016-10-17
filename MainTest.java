@@ -4,23 +4,38 @@ import org.junit.Test;
 
 public class MainTest {
 
+    //конструктор
+
     //только inkContainerValue из конструктора
     @Test
     public void JustInkContainerValue() {
         int inkContainerValue = 10;
         Pen testInk = new Pen(inkContainerValue);
         Assert.assertNotNull(testInk);
-
-
-
     }
 
+//ink и letterSize из конструктора
+
+    @Test
+    public void InkAndSizeLetterContainerValue() {
+        int inkContainerValue = 15;
+        double sizeLetter = 5.0;
+        Pen testInkAndSizeLetter = new Pen(inkContainerValue, sizeLetter);
+        Assert.assertNotNull(testInkAndSizeLetter);
+    }
+
+//ink, letterSize, Color из конструктора
+
+    @Test
+    public void InkLetterSizeColorContainerValue() {
+        int inkContainerValue = 20;
+        double sizeLetter = 1.0;
+        String color = "BLUE";
+        Pen testInkSizeLetterColorContainerValue = new Pen(inkContainerValue, sizeLetter, color);
+        Assert.assertNotNull(testInkSizeLetterColorContainerValue);
+    }
 
     //write----------
-
-
-
-//------------------------------
 
     //текст + 1 значение из констркутора
     @Test
@@ -124,19 +139,19 @@ public class MainTest {
     }
 
     //inkContainerValue != 0
-     @Test
-     public void testPartOfInkContainerValueWrite() {
-         String testWord1 = "Testing";
-         String testWord2 = "Authotesting";
-         int inkContainerValue = 10;
-         double sizeLetter = 1.0;
-         String color = "BLUE";
-         Pen testText = new Pen(inkContainerValue, sizeLetter);
-         String word = testText.write(testWord1);
-         String word2 = testText.write(testWord2);
-         Assert.assertEquals("Testing", testWord1);
-         Assert.assertEquals("Aut", testWord2);
-     }
+    @Test
+    public void testPartOfInkContainerValueWrite() {
+        String testWord1 = "Testing";
+        String testWord2 = "Authotesting";
+        int inkContainerValue = 10;
+        double sizeLetter = 1.0;
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, sizeLetter);
+        String word = testText.write(testWord1);
+        String word2 = testText.write(testWord2);
+        Assert.assertEquals("Testing", testWord1);
+        Assert.assertEquals("Aut", testWord2);
+    }
 
     // isWork------------------------------
 
