@@ -1,6 +1,13 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 public class MainTest {
 
@@ -177,5 +184,31 @@ public class MainTest {
         Assert.assertEquals(false, underZero.isWork());
     }
 
+    //getColor
+    @Test
+    public void getColor() {
+        int inkContainerValue = 99;
+        double sizeLetter = 2.0;
+        String testGetColor = "RED";
+        Pen testOfGetColor = new Pen(inkContainerValue, sizeLetter, testGetColor);
+        Assert.fail(testOfGetColor.getColor());
+    }
+
+    //do somethingElse
+
+    @Test
+    public void testDoSmthElse() throws IOException {
+        int inkContainerValue = 30;
+        double sizeLetter = 1.0;
+        String testColor = "BLUE";
+        Pen testPenThreeArgs = new Pen(inkContainerValue, sizeLetter, testColor);
+        File fortestfile = new File("d:\\1.txt"); //  создаем файл
+        PrintStream ps = new PrintStream(fortestfile); // создаем поток вывода в файл
+        PrintStream standardOut = System.out; // сохраняем стандартный поток вывода
+        System.setOut(ps); // присваиваем файловый поток в качестве основного
+        testPenThreeArgs.doSomethingElse(); // вызываем метод
+        Assert.assertEquals(Files.readAllLines(Paths.get(fortestfile.toURI()), Charset.forName("UTF-8")), testColor); // проверяем что результат в файле равен ожидаемому
+        System.setOut(standardOut); // возвращаем метод в исходное состояние
+    }
 
 }
