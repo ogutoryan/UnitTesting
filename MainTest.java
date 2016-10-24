@@ -1,12 +1,13 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+
+import static java.lang.System.out;
 
 
 public class MainTest {
@@ -197,18 +198,21 @@ public class MainTest {
     //do somethingElse
 
     @Test
-    public void testDoSmthElse() throws IOException {
+    public void testDoSomethingElse() throws IOException {
         int inkContainerValue = 30;
         double sizeLetter = 1.0;
-        String testColor = "BLUE";
+        String testColor = "RED";
         Pen testPenThreeArgs = new Pen(inkContainerValue, sizeLetter, testColor);
-        File fortestfile = new File("d:\\1.txt"); //  создаем файл
-        PrintStream ps = new PrintStream(fortestfile); // создаем поток вывода в файл
+        File forTestFile = new File("d:\\1.txt"); //  создаем файл
+        PrintStream ps = new PrintStream(forTestFile); // создаем поток вывода в файл
         PrintStream standardOut = System.out; // сохраняем стандартный поток вывода
         System.setOut(ps); // присваиваем файловый поток в качестве основного
         testPenThreeArgs.doSomethingElse(); // вызываем метод
-        Assert.assertEquals(Files.readAllLines(Paths.get(fortestfile.toURI()), Charset.forName("UTF-8")), testColor); // проверяем что результат в файле равен ожидаемому
         System.setOut(standardOut); // возвращаем метод в исходное состояние
-    }
+        BufferedReader fin = new BufferedReader(new FileReader(forTestFile));
+        String line;
+        line = fin.readLine();
+        Assert.assertEquals(testColor, line);
 
+    }
 }
