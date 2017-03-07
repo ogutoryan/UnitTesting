@@ -73,13 +73,23 @@ public class MainTest {
     @Test
     public void spaceWriteTest() {
         String testWord = "Testing hello";
-        int inkContainerValue = 10;
-        double letterSize = 15.10;
+        int inkContainerValue = 12;
+        double letterSize = 1;
         String color = "BLUE";
         Pen testText = new Pen(inkContainerValue, letterSize, color);
         String word = testText.write(testWord);
-        String partOfWord = word.substring(0, inkContainerValue);
-        Assert.assertEquals("Testing hel", partOfWord);
+        Assert.assertEquals("Testing hello", word);
+    }
+
+    @Test
+    public void letterSizeMoreThanInkTest() {
+        String testWord = "Testing";
+        int inkContainerValue = 2;
+        double letterSize = 3;
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, letterSize, color);
+        String word = testText.write(testWord);
+        Assert.assertEquals("", word);
     }
 
     @Test
@@ -108,14 +118,14 @@ public class MainTest {
 
     @Test
     public void wordSizeMoreThanInkContainerValueTest() {
-        String testWord = "Testing";
+        String testWord = "Autotest22";
         int inkContainerValue = 10;
         double letterSize = 5.0;
         String color = "BLUE";
         Pen testText = new Pen(inkContainerValue, letterSize, color);
         String word = testText.write(testWord);
         String partOfWord = word.substring(0, inkContainerValue);
-        Assert.assertEquals("Te", partOfWord);
+        Assert.assertEquals("Au", partOfWord);
     }
 
     @Test
@@ -124,12 +134,12 @@ public class MainTest {
         String testWord2 = "Authotesting";
         int inkContainerValue = 10;
         double letterSize = 1.0;
-        //String color = "BLUE";
-        Pen testText = new Pen(inkContainerValue, letterSize);
-       // String word = testText.write(testWord1);
-       // String word2 = testText.write(testWord2);
-        //Assert.assertEquals("Testing", testWord1);
-        Assert.assertEquals("Aut", testWord2);
+        String color = "BLUE";
+        Pen testText = new Pen(inkContainerValue, letterSize, color);
+        String word1 = testText.write(testWord1);
+        String word2 = testText.write(testWord2);
+        Assert.assertEquals("Testing", word1);
+        Assert.assertEquals("Aut", word2);
     }
 
     @Test
@@ -157,10 +167,20 @@ public class MainTest {
     public void getColorTest() {
         int inkContainerValue = 99;
         double letterSize = 2.0;
+        String testGetColor = "BLUE";
+        Pen testOfGetColor = new Pen(inkContainerValue, letterSize, testGetColor);
+        Assert.assertEquals(testGetColor, testOfGetColor.getColor());
+    }
+
+    @Test
+    public void getRedColorTest() {
+        int inkContainerValue = 100;
+        double letterSize = 3;
         String testGetColor = "RED";
         Pen testOfGetColor = new Pen(inkContainerValue, letterSize, testGetColor);
-        Assert.fail(testOfGetColor.getColor());
+        Assert.assertEquals(testGetColor, testOfGetColor.getColor());
     }
+
 
     @Test
     public void doSomethingElseTest() throws IOException {
@@ -168,15 +188,16 @@ public class MainTest {
         double letterSize = 1.0;
         String testColor = "RED";
         Pen testPenThreeArgs = new Pen(inkContainerValue, letterSize, testColor);
-        File forTestFile = new File("d:\\1.txt"); //  создаем файл
-        PrintStream ps = new PrintStream(forTestFile); // создаем поток вывода в файл
+        File f = new File("1.txt"); //  создаем файл
+        PrintStream ps = new PrintStream(f); // создаем поток вывода в файл
         PrintStream standardOut = System.out; // сохраняем стандартный поток вывода
         System.setOut(ps); // присваиваем файловый поток в качестве основного
         testPenThreeArgs.doSomethingElse(); // вызываем метод
         System.setOut(standardOut); // возвращаем метод в исходное состояние
-        BufferedReader fin = new BufferedReader(new FileReader(forTestFile));
+        BufferedReader fin = new BufferedReader(new FileReader(f));
         String line;
         line = fin.readLine();
         Assert.assertEquals(testColor, line);
     }
 }
+
